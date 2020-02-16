@@ -1,0 +1,116 @@
+.
+├── conf.js
+├── lib
+│   ├── common
+│   │   ├── constants.js
+│   │   └── helper.js
+│   ├── configuration
+│   │   ├── dev.js
+│   │   ├── env.js
+│   │   ├── local.js
+│   │   ├── stg.js
+│   │   └── test.js
+│   ├── helpers
+│   │   ├── patients
+│   │   │   ├── auth-helper.js
+│   │   │   └── visit-helper.js
+│   │   └── sites
+│   │       ├── auth-helper.js
+│   │       ├── connect-helper.js
+│   │       ├── create-case-helper.js
+│   │       ├── profile-helper.js
+│   │       ├── settings-helper.js
+│   │       └── video-helper.js
+│   └── page-objects
+│       ├── patients
+│       │   ├── dashboard-page-objects.js
+│       │   ├── forgot-password-objects.js
+│       │   ├── header-objects.js
+│       │   ├── login-page-objects.js
+│       │   ├── portal-page-objects.js
+│       │   ├── reset-password-objects.js
+│       │   ├── signup-page-objects.js
+│       │   ├── site-page-object.js
+│       │   └── visit-page-objects.js
+│       └── sites
+│           ├── case-detail-page-object.js
+│           ├── connect-page-objects.js
+│           ├── create-case-page-object.js
+│           ├── forgot-password-page-objects.js
+│           ├── header-objects.js
+│           ├── login-page-object.js
+│           ├── profile-contact-preferences-object.js
+│           ├── profile-general-object.js
+│           ├── profile-notifications-object.js
+│           ├── profile-password-object.js
+│           ├── reset-password-page-objects.js
+│           ├── settings-page-objects.js
+│           ├── site-page-object.js
+│           └── video-page-objects.js
+├── patients
+│   ├── config.js
+│   └── specs
+│       ├── auth
+│       │   ├── forgot-password-spec.js
+│       │   ├── login-spec.js
+│       │   ├── logout-spec.js
+│       │   ├── portal-spec.js
+│       │   └── signup-spec.js
+│       └── visit
+│           └── visit-spec.js
+├── README.md
+├── reports
+│   ├── css
+│   │   ├── mochawesome-64.css
+│   │   └── mochawesome.css
+│   ├── fonts
+│   │   ├── mochawesome.eot
+│   │   ├── mochawesome.svg
+│   │   ├── mochawesome.ttf
+│   │   ├── mochawesome.woff
+│   │   ├── Roboto+Condensed_300_normal.ttf
+│   │   ├── Roboto+Condensed_300_normal.woff
+│   │   ├── Roboto+Condensed_400_normal.svg
+│   │   ├── Roboto+Condensed_400_normal.ttf
+│   │   ├── Roboto+Condensed_400_normal.woff
+│   │   ├── Roboto+Condensed_700_normal.ttf
+│   │   ├── Roboto+Condensed_700_normal.woff
+│   │   ├── Roboto+Slab_400_normal.svg
+│   │   ├── Roboto+Slab_400_normal.ttf
+│   │   └── Roboto+Slab_400_normal.woff
+│   ├── js
+│   │   ├── mochawesome.js
+│   │   └── vendor.js
+│   ├── screenshots
+│   └── TestExecutionReport_1515393820024.html
+├── sites
+│   ├── builder
+│   │   └── case-detail-builder.js
+│   ├── config.js
+│   └── specs
+│       ├── auth
+│       │   ├── forgot-password-spec.js
+│       │   ├── login-spec.js
+│       │   ├── logout-spec.js
+│       │   └── successful-login-spec.js
+│       ├── cases
+│       │   ├── call-ca200-endpoint-spec.js
+│       │   ├── cases-spec.js
+│       │   └── join-video-spec.js
+│       ├── connect
+│       │   ├── join-existing-room.js
+│       │   └── make-connect-call-spec.js
+│       ├── dashboard
+│       │   └── dashboard-spec.js
+│       ├── profile
+│       │   ├── profile-contact-preferences-spec.js
+│       │   ├── profile-general-spec.js
+│       │   ├── profile-notifications-spec.js
+│       │   └── profile-password-spec.js
+│       ├── settings
+│       │   └── invite-user-spec.js
+│       └── site
+│           └── site-code-spec.js
+└── structure
+
+28 directories, 85 files
