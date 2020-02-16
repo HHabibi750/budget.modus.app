@@ -1,2 +1,1 @@
-require('./login.spec');
-
+require('./adding-newItem-spec');
