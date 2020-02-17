@@ -1,10 +1,11 @@
 const helper = require('../../lib/common/helper');
 const config = new (require('../config'))();
 const budgetPage = new (require('../../lib/page-objects/budget-page-objects'))();
+
 const expect = chai.expect;
 
-let itemDescription = 'dinner with friends';
-let itemAmount = 400;
+const itemDescription = 'dinner with friends';
+const itemAmount = 400;
 
 describe('verify that the add button adds new item to the table on the budget tab', () => {
   // this.retries(CONSTANTS.AUTO_TEST_REPETITIONS);
@@ -23,7 +24,6 @@ describe('verify that the add button adds new item to the table on the budget ta
   it('the user enters a description for the item', async () => {
     await helper.clickElement(budgetPage.descriptionTextbox);
     await helper.replaceInputValue(budgetPage.descriptionTextbox, '', itemDescription);
-
   });
 
   it('the user enters the amount of the expense', async () => {
@@ -36,5 +36,4 @@ describe('verify that the add button adds new item to the table on the budget ta
     const tableContent = await budgetPage.reportTable.getText();
     expect(tableContent).to.include(itemDescription) && expect(tableContent).to.include(itemAmount);
   });
-
 });

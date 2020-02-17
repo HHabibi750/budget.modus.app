@@ -2,7 +2,12 @@ const helper = require('../../lib/common/helper');
 const config = new (require('../config'))();
 const budgetPage = new (require('../../lib/page-objects/budget-page-objects'))();
 
-describe('verify that the add button adds new item to the table on the budget tab', () => {
+const expect = chai.expect;
+
+let totalPositive;
+let totalNegative;
+
+describe.only('verify that the values on the table add up to the Total Inflow/Outflow values', () => {
   // this.retries(CONSTANTS.AUTO_TEST_REPETITIONS);
   before(async () => {
     browser.waitForAngularEnabled(false);
@@ -10,21 +15,25 @@ describe('verify that the add button adds new item to the table on the budget ta
     helper.waitForElementToBeVisible(budgetPage.budgetButton);
   });
 
-
-  it('the user selects the item category', async () => {
-
-  });
-
-  it('the user enters a description for the item', async () => {
-
-  });
-
-  it('the user enters the amount of the expense', async () => {
+  it('the user adds up the positive values', async () => {
+    const positiveValues = await budgetPage.positiveTableValues.getText();
+    const negativeValues = await budgetPage.negativeTableValues.getText();
+    totalPositive = await helper.addNumbers(positiveValues);
+    totalNegative = await helper.addNumbers(negativeValues);
 
   });
 
-  it('the user clicks the add button and verifies that the item has been added to the table', async () => {
+  it('the user validates that the total positive values equal total inflow number shown on the app', async () => {
+    const totalInflow = await budgetPage.totalInflow.getText();
+    const totalInflowFormatted = await helper.removeDollarSign(totalInflow);
+    expect(totalPositive).to.equal(totalInflowFormatted);
+  });
 
+  it('the user validates that the total positive values equal total inflow number shown on the app', async () => {
+    const totalOutflow = await budgetPage.totalOutflow.getText();
+    let totalOutflowFormatted = await helper.removeDollarSign(totalOutflow);
+    totalOutflowFormatted = -Math.abs(totalOutflowFormatted);
+    expect(totalNegative).to.equal(totalOutflowFormatted);
   });
 
 });

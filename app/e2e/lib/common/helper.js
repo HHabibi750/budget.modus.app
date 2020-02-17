@@ -1,66 +1,87 @@
 const chance = new (require('chance'))();
 
 let inputElementsObject = [];
-let until = protractor.ExpectedConditions;
+const until = protractor.ExpectedConditions;
 require('./constants');
 
 class helper {
   static waitForElement(elm, timeout = CONSTANTS.MAX_WAIT_FOR_ELEMENT, retryCount = 0) {
-    return browser.wait(() => elm.isPresent(), timeout, `Element ${elm} was not found within ${timeout} milliseconds.`)
+    return browser
+      .wait(() => elm.isPresent(), timeout, `Element ${elm} was not found within ${timeout} milliseconds.`)
       .catch(async () => {
         retryCount++;
         if (retryCount < CONSTANTS.AUTO_TEST_REPETITIONS) {
           await browser.refresh();
           return this.waitForElement(elm, timeout, retryCount);
         }
-        return Promise.reject(new Error(`Element ${elm.locator().toString()} was not found within ${timeout} milliseconds.`));
+        return Promise.reject(
+          new Error(`Element ${elm.locator().toString()} was not found within ${timeout} milliseconds.`)
+        );
       });
   }
 
   static async waitForElementToBeClickable(elm, sleep = 0, retryCount = 0) {
-    return browser.wait(
-      until.elementToBeClickable(elm),
-      CONSTANTS.MAX_TIME_FOR_BROWSER_WAIT + sleep,
-      `Element ${elm.locator().toString()} was not found within ${CONSTANTS.MAX_TIME_FOR_BROWSER_WAIT} milliseconds`
-    )
+    return browser
+      .wait(
+        until.elementToBeClickable(elm),
+        CONSTANTS.MAX_TIME_FOR_BROWSER_WAIT + sleep,
+        `Element ${elm.locator().toString()} was not found within ${CONSTANTS.MAX_TIME_FOR_BROWSER_WAIT} milliseconds`
+      )
       .catch(async () => {
         retryCount++;
         if (retryCount < CONSTANTS.AUTO_TEST_REPETITIONS) {
           await browser.refresh();
           return this.waitForElementToBeClickable(elm, sleep, retryCount);
         }
-        return Promise.reject(new Error(`Element ${elm.locator().toString()} was not found within ${CONSTANTS.MAX_TIME_FOR_BROWSER_WAIT} milliseconds.`));
+        return Promise.reject(
+          new Error(
+            `Element ${elm.locator().toString()} was not found within ${
+            CONSTANTS.MAX_TIME_FOR_BROWSER_WAIT
+            } milliseconds.`
+          )
+        );
       });
   }
 
   static async waitForElementToBeVisible(elm, retryCount = 0) {
-    return browser.wait(
-      until.visibilityOf(elm),
-      CONSTANTS.MAX_TIME_FOR_BROWSER_WAIT,
-      `Element ${elm.locator().toString()} was not found within ${CONSTANTS.MAX_TIME_FOR_BROWSER_WAIT} milliseconds.`
-    )
+    return browser
+      .wait(
+        until.visibilityOf(elm),
+        CONSTANTS.MAX_TIME_FOR_BROWSER_WAIT,
+        `Element ${elm.locator().toString()} was not found within ${CONSTANTS.MAX_TIME_FOR_BROWSER_WAIT} milliseconds.`
+      )
       .catch(async () => {
         retryCount++;
         if (retryCount < CONSTANTS.AUTO_TEST_REPETITIONS) {
           await browser.refresh();
           return this.waitForElementToBeVisible(elm, retryCount);
         }
-        return Promise.reject(new Error(`Element ${elm.locator().toString()} was not found within ${CONSTANTS.MAX_TIME_FOR_BROWSER_WAIT} milliseconds.`));
+        return Promise.reject(
+          new Error(
+            `Element ${elm.locator().toString()} was not found within ${
+            CONSTANTS.MAX_TIME_FOR_BROWSER_WAIT
+            } milliseconds.`
+          )
+        );
       });
   }
+
   static waitForElementToBePresent(elm, retryCount = 0) {
-    return browser.wait(
-      until.presenceOf(elm),
-      CONSTANTS.MAX_TIME_FOR_BROWSER_WAIT,
-      `Element ${elm.locator().toString()} is taking too long to appear in the DOM`
-    )
+    return browser
+      .wait(
+        until.presenceOf(elm),
+        CONSTANTS.MAX_TIME_FOR_BROWSER_WAIT,
+        `Element ${elm.locator().toString()} is taking too long to appear in the DOM`
+      )
       .catch(async () => {
         retryCount++;
         if (retryCount < CONSTANTS.AUTO_TEST_REPETITIONS) {
           await browser.refresh();
           return this.waitForElementToBePresent(elm, retryCount);
         }
-        return Promise.reject(new Error(`Element ${elm.locator().toString()} is taking too long to appear in the DOM.`));
+        return Promise.reject(
+          new Error(`Element ${elm.locator().toString()} is taking too long to appear in the DOM.`)
+        );
       });
   }
 
@@ -201,6 +222,23 @@ class helper {
       value,
     };
   }
+
+  static removeDollarSign(formattedNumber) {
+    let intValue = parseFloat(formattedNumber.toString().replace("$", '').replace(/,/, ''));
+    return intValue;
+  }
+
+
+  static addNumbers(array) {
+    let sum = 0;
+    let intValue = 0;
+    for (var i = 0; i < array.length; i++) {
+      intValue = helper.removeDollarSign(array[i]);
+      sum += parseFloat(intValue);
+    }
+    return sum;
+  }
+
 
   static anyTextToBePresentInElement(elementFinder) {
     const EC = protractor.ExpectedConditions;
