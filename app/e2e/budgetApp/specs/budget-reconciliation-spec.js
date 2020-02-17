@@ -15,12 +15,11 @@ describe('verify that the values on the table add up to the Total Inflow/Outflow
     helper.waitForElementToBeVisible(budgetPage.budgetButton);
   });
 
-  it('the user adds up the positive values', async () => {
+  it('the user adds up the positive and negative values', async () => {
     const positiveValues = await budgetPage.positiveTableValues.getText();
     const negativeValues = await budgetPage.negativeTableValues.getText();
     totalPositive = await helper.addNumbers(positiveValues);
     totalNegative = await helper.addNumbers(negativeValues);
-
   });
 
   it('the user validates that the total positive values equal total inflow number shown on the app', async () => {
@@ -29,11 +28,10 @@ describe('verify that the values on the table add up to the Total Inflow/Outflow
     expect(totalPositive).to.equal(totalInflowFormatted);
   });
 
-  it('the user validates that the total positive values equal total inflow number shown on the app', async () => {
+  it('the user validates that the total negative values equal total inflow number shown on the app', async () => {
     const totalOutflow = await budgetPage.totalOutflow.getText();
     let totalOutflowFormatted = await helper.removeDollarSign(totalOutflow);
     totalOutflowFormatted = -Math.abs(totalOutflowFormatted);
     expect(totalNegative).to.equal(totalOutflowFormatted);
   });
-
 });

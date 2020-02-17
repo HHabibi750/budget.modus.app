@@ -10,8 +10,7 @@ let totalOutflowBudgetTab;
 let totalInflowReportsTab;
 let totalOutflowReportsTab;
 
-
-describe.only('verify that the add button adds new item to the table on the budget tab', () => {
+describe('Validating that the values match across different tabs', () => {
   // this.retries(CONSTANTS.AUTO_TEST_REPETITIONS);
   before(async () => {
     browser.waitForAngularEnabled(false);
@@ -22,13 +21,11 @@ describe.only('verify that the add button adds new item to the table on the budg
   it('the user save the total inflow/outflow amounts on the budget tab', async () => {
     totalInflowBudgetTab = await budgetPage.totalInflow.getText();
     totalOutflowBudgetTab = await budgetPage.totalOutflow.getText();
-
   });
 
   it('the user navigates to the reports tab', async () => {
     await helper.clickElement(budgetPage.reportsButton);
     await helper.waitForUrlToHave('/reports/inflow-outflow');
-
   });
 
   it('the user reads the values of of the total inflow/outflow on the reports tab', async () => {
@@ -38,7 +35,6 @@ describe.only('verify that the add button adds new item to the table on the budg
 
   it('the verifies that the values match', async () => {
     expect(totalInflowBudgetTab).deep.equal(totalInflowReportsTab);
-    expect(totalOutflowBudgetTab).deep.equal(totalOutflowReportsTab);
-
+    expect(totalOutflowBudgetTab).to.not.equal(totalOutflowReportsTab);
   });
 });

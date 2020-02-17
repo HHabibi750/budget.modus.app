@@ -102,19 +102,6 @@ class helper {
     });
   }
 
-  static async waitAndClick(elm) {
-    await this.waitForElementToBeClickable(elm);
-    return this.clickElement(elm);
-  }
-
-  // This clicks elements with same class one by one.
-  static async clickMultipleElementsWithSameClass(elmsToClick) {
-    const promises = [];
-    await this.waitForElementToBePresent(elmsToClick);
-    const elem = await elmsToClick.each;
-    promises.push(elem.click(), browser.sleep(500));
-    return Promise.all(promises);
-  }
 
   // This clicks an elements.  If the element is unique, then you do not need to pass in a position,
   // if it is not unique, then it will pick the first one, unless a position is passed in.  The position
@@ -131,58 +118,14 @@ class helper {
     return elmToClick.click();
   }
 
-  static hoverOver(elm) {
-    return browser
-      .actions()
-      .mouseMove(elm)
-      .perform();
-  }
 
-  static async replaceInputAndSaveValue(inputElement, inputType, params) {
-    if (inputType && (typeof params !== 'string' || typeof params !== 'number')) {
-      params = chance[inputType](params);
-    }
-    await inputElement.clear().sendKeys(params);
-    return this.setSavedValues(inputElement, params);
-  }
+
 
   static replaceInputValue(inputElement, inputType, params) {
     if (inputType && (typeof params !== 'string' || typeof params !== 'number')) {
       params = chance[inputType](params);
     }
     return inputElement.clear().sendKeys(params);
-  }
-
-  static async setSavedValues(inputElement, params) {
-    const id = await inputElement.getAttribute('id');
-    return inputElementsObject.push({
-      id: id,
-      value: params,
-    });
-  }
-
-  static getSavedValues() {
-    return inputElementsObject;
-  }
-
-  static clearSavedValues() {
-    inputElementsObject = [];
-  }
-
-  static clearInput(inputElement) {
-    return inputElement.clear();
-  }
-
-  static scrollToElement(elem) {
-    return browser
-      .actions()
-      .mouseMove(elem)
-      .perform();
-  }
-
-  // This will align the top of the element to the top of the visible area.
-  static scrollElemFinderIntoView(elem) {
-    return browser.executeScript('arguments[0].scrollIntoView(true)', elem);
   }
 
   // Wait for the URL to NOT contain urlShouldNotExit
@@ -200,54 +143,27 @@ class helper {
     });
   }
 
-  static async getBrowserInfo() {
-    const browserInfo = await browser.getCapabilities();
-    return {
-      name: browserInfo.get('name') || browserInfo.get('browserName'),
-      version: browserInfo.get('version'),
-      platform: browserInfo.get('platform'),
-    };
-  }
-
-  static waitForElementToBeInvisible(element) {
-    const EC = protractor.ExpectedConditions;
-    return browser.wait(EC.invisibilityOf(element), 10000);
-  }
-
-  static getTypeAndValue(field, options) {
-    const type = field || field === '' ? '' : CONSTANTS[options.type.toUpperCase()];
-    const value = field || field === '' ? field : options;
-    return {
-      type,
-      value,
-    };
-  }
 
   static removeDollarSign(formattedNumber) {
-    let intValue = parseFloat(formattedNumber.toString().replace("$", '').replace(/,/, ''));
+    const intValue = parseFloat(
+      formattedNumber
+        .toString()
+        .replace('$', '')
+        .replace(/,/, '')
+    );
     return intValue;
   }
-
 
   static addNumbers(array) {
     let sum = 0;
     let intValue = 0;
-    for (var i = 0; i < array.length; i++) {
+    for (let i = 0; i < array.length; i++) {
       intValue = helper.removeDollarSign(array[i]);
       sum += parseFloat(intValue);
     }
     return sum;
   }
 
-
-  static anyTextToBePresentInElement(elementFinder) {
-    const EC = protractor.ExpectedConditions;
-    const hasText = async () => {
-      const actualText = await elementFinder.getText();
-      return !!actualText;
-    };
-    return EC.and(EC.presenceOf(elementFinder), hasText);
-  }
 }
 
 module.exports = helper;
