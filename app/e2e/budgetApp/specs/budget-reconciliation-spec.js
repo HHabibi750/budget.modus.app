@@ -7,7 +7,7 @@ const expect = chai.expect;
 let totalPositive;
 let totalNegative;
 
-describe.only('verify that the values on the table add up to the Total Inflow/Outflow values', () => {
+describe('verify that the values on the table add up to the Total Inflow/Outflow values', () => {
   // this.retries(CONSTANTS.AUTO_TEST_REPETITIONS);
   before(async () => {
     browser.waitForAngularEnabled(false);

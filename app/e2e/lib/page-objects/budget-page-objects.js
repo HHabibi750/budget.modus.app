@@ -1,6 +1,6 @@
 const BudgetPage = function() {
     this.budgetButton = element(by.cssContainingText('a[class="_3k5Wa _1ZQm-"]', 'Budget'));
-    this.reportsButton = element(by.cssContainingText('a[class="_3k5Wa"]', 'Budget'));
+    this.reportsButton = element(by.cssContainingText('a[class="_3k5Wa"]', 'Reports'));
     this.reportTable = element(by.css('tbody'));
     this.categories = element(by.xpath('//td/div[text()="Category"]/following-sibling::div'));
     this.descriptions = element(by.xpath('//td/div[text()="Description"]/following-sibling::div'));
