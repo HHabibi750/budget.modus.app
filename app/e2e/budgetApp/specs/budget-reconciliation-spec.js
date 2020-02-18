@@ -28,7 +28,7 @@ describe('verify that the values on the table add up to the Total Inflow/Outflow
     expect(totalPositive).to.equal(totalInflowFormatted);
   });
 
-  it('the user validates that the total negative values equal total inflow number shown on the app', async () => {
+  it('the user validates that the total negative values equal total outflow number shown on the app', async () => {
     const totalOutflow = await budgetPage.totalOutflow.getText();
     let totalOutflowFormatted = await helper.removeDollarSign(totalOutflow);
     totalOutflowFormatted = -Math.abs(totalOutflowFormatted);

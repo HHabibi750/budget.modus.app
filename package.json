@@ -24,7 +24,7 @@
     "postinstall": "rimraf .cache-loader & npm run dll",
     "precommit": "lint-staged",
     "webdriver-update": "webdriver-manager update",
-    "pree2e": "webdriver-manager start --standalone",
+    "pree2e": "sudo webdriver-manager start",
     "e2eTest": "./node_modules/.bin/protractor app/e2e/conf.js"
   },
   "lint-staged": {
