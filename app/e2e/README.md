@@ -25,10 +25,10 @@ The tests could be executed with running this command.
 I have added this command in the package.json file. This command runs the app/e2e/conf.js file that sets all the settings for the framework. 
 You can chose which tests to run from the index.js file. You can comment out the ones  you don't want to run. By default all test files required in the index.js file will be run. 
 
-Please note that for the first time execution you will need to run, the following commands to start the selenium server before running the command above.
+Please note that for the first time execution you will need to run, the following commands to start the selenium server and get the necessary binaries:
 
-- webdriver-manager start --standalone
-- webdriver-manager update
+- npm run webdriver-update
+- npm run pree2e
 
 
 # Reporting
