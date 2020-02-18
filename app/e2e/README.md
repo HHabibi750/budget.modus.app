@@ -18,17 +18,18 @@ npm install chai-smoothie
 I have added these under the dev-dependencies in the package.json file.
 
 # How to Execute the tests
-The tests could be executed with running this command. 
+The tests could be executed by running these custom commands arranged via npm in the following order:
 
-- npm run e2eTest
-
-I have added this command in the package.json file. This command runs the app/e2e/conf.js file that sets all the settings for the framework. 
-You can chose which tests to run from the index.js file. You can comment out the ones  you don't want to run. By default all test files required in the index.js file will be run. 
-
-Please note that for the first time execution you will need to run, the following commands to start the selenium server and get the necessary binaries:
+Please make sure you run the following two commands in a seperate terminal to start the selenium server and get the necessary binaries before being able to execute the tests:
 
 - npm run webdriver-update
 - npm run pree2e
+
+Now run this command in new terminal to execute the tests:
+- npm run e2eTest
+
+I have added all these commands in the package.json file. The final main command runs the app/e2e/conf.js file that sets all the settings for the framework. 
+You can chose which tests to run from the index.js file. You can comment out the ones  you don't want to run. By default all test files required in the index.js file will be run.
 
 
 # Reporting
