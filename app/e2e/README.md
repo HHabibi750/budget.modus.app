@@ -31,6 +31,13 @@ Now run this command in new terminal to execute the tests:
 I have added all these commands in the package.json file. The final main command runs the app/e2e/conf.js file that sets all the settings for the framework. 
 You can chose which tests to run from the index.js file. You can comment out the ones  you don't want to run. By default all test files required in the index.js file will be run.
 
+OR
+
+You could completely bypass the selenium server by setting the directConnect option to true from the command line. Going through this route, you don't have to start the selenium server but it will only work with Chrome and Firefox browsers. 
+
+Simply run the following command:
+
+- npm run e2eTest -- --directConnect=‘true’
 
 # Reporting
 I am using "mochawecome" library for the reporting purposes. Mochawesome is avialable through npm and it create wonderful HTML reports and screenshorts that saves automatically after each run in the e2e/reports folder. I have included this folder in the .gitignore file so the reports only stays local.
