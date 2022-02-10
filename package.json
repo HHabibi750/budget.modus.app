@@ -85,7 +85,7 @@
     "mocha": "^7.0.1",
     "mochawesome-extended": "^1.6.7",
     "mochawesome-screenshots": "^1.6.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "optimize-css-assets-webpack-plugin": "4.0.1",
     "postcss-loader": "2.1.5",
     "preload-webpack-plugin": "3.0.0-beta.1",
